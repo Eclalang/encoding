@@ -1,22 +1,23 @@
 package encoding
 
+import (
+	"bytes"
+)
+
 // AsciiToString converts an array of ASCII values to a string
 func AsciiToString(intArr []int) string {
-	str := ""
-	for i := 0; i < len(intArr); i++ {
-		if intArr[i] > 127 {
-			intArr[i] = 127
-		}
-		str += string(intArr[i])
+	var buf bytes.Buffer
+	for _, v := range intArr {
+		buf.WriteByte(byte(v))
 	}
-	return str
+	return buf.String()
 }
 
 // StringToAscii converts a string to an array of ASCII values
 func StringToAscii(str string) []int {
 	intArr := make([]int, len(str))
-	for i := 0; i < len(str); i++ {
-		intArr[i] = int(str[i])
+	for i, v := range str {
+		intArr[i] = int(v)
 	}
 	return intArr
 }
