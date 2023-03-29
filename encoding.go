@@ -9,6 +9,24 @@ import (
 	"errors"
 )
 
+// AsciiToString converts an array of ASCII values to a string
+func AsciiToString(intArr []int) string {
+	var buf bytes.Buffer
+	for _, v := range intArr {
+		buf.WriteByte(byte(v))
+	}
+	return buf.String()
+}
+
+// StringToAscii converts a string to an array of ASCII values
+func StringToAscii(str string) []int {
+	intArr := make([]int, len(str))
+	for i, v := range str {
+		intArr[i] = int(v)
+	}
+	return intArr
+}
+
 var (
 	ErrInvalidBase64String = errors.New("invalid base64 string")
 	ErrInvalidHexString    = errors.New("invalid hex string")
