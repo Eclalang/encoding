@@ -2,7 +2,14 @@
 
 # Candidate functions :
 
-|   Func Name   |              Prototype               |             Description             | Comments |
-|:-------------:|:------------------------------------:|:-----------------------------------:|:--------:|
-| AsciiToString | AsciiToString(ascii []int) string {} | Converts ASCII characters to string |    N/A   |
-| StringToAscii |  StringToAscii(str string) []int {}  | Converts string to ASCII characters |    N/A   |
+| Name | Prototype | Description |
+| --- | --- | --- |
+| `EncodeBase64` | `func EncodeBase64(data []byte) string` | Encodes data using the base64 algorithm. |
+| `DecodeBase64` | `func DecodeBase64(s string) ([]byte, error)` | Decodes data using the base64 algorithm. |
+| `EncodeHex` | `func EncodeHex(data []byte) string` | Encodes data using the hexadecimal encoding algorithm. |
+| `DecodeHex` | `func DecodeHex(s string) ([]byte, error)` | Decodes data using the hexadecimal encoding algorithm. |
+| `EncodeJSON` | `func EncodeJSON(v interface{}) ([]byte, error)` | Encodes data using the JSON encoding algorithm. |
+| `DecodeJSON` | `func DecodeJSON(data []byte, v interface{}) error` | Decodes data using the JSON encoding algorithm. |
+| `EncodeGob` | `func EncodeGob(v interface{}) ([]byte, error)` | Encodes data using the Gob encoding algorithm. |
+| `DecodeGob` | `func DecodeGob(data []byte, v interface{}) error` | Decodes data using the Gob encoding algorithm. |
+

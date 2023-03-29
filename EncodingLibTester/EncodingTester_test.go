@@ -11,8 +11,8 @@ import (
 
 func TestEncodeDecodeString(t *testing.T) {
 	input := "hello world"
-	encoded := encoding.EncodeToString([]byte(input))
-	decoded, err := encoding.DecodeString(encoded)
+	encoded := encoding.EncodeBase64([]byte(input))
+	decoded, err := encoding.DecodeBase64(encoded)
 	if err != nil {
 		t.Errorf("DecodeString error: %v", err)
 	}
