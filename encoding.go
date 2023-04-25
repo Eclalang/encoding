@@ -2,11 +2,6 @@ package encoding
 
 import (
 	"bytes"
-	"encoding/base64"
-	"encoding/gob"
-	"encoding/hex"
-	"encoding/json"
-	"errors"
 )
 
 // AsciiToString converts an array of ASCII values to a string
@@ -26,4 +21,3 @@ func StringToAscii(str string) []int {
 	}
 	return intArr
 }
-
