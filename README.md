@@ -1,6 +1,6 @@
-## ENCODING LIBRARY FOR ECLA
+# Encoding library
 
-# Candidate functions :
+## Candidate functions :
 
 |   Func Name   |               Prototype               |                Description                 | Comments |
 |:-------------:|:-------------------------------------:|:------------------------------------------:|:--------:|
