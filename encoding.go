@@ -5,76 +5,97 @@ import (
 	"encoding/base64"
 	"encoding/gob"
 	"encoding/hex"
-	"encoding/json"
-	"errors"
 )
 
-var (
-	ErrInvalidBase64String = errors.New("invalid base64 string")
-	ErrInvalidHexString    = errors.New("invalid hex string")
-)
+// AsciiToString converts an array of ASCII values to a string
+func AsciiToString(intArr []int) string {
+	var buf bytes.Buffer
+	for _, v := range intArr {
+		buf.WriteByte(byte(v))
+	}
+	return buf.String()
+}
 
-// EncodeBase64 encodes data using the base64 algorithm.
-func EncodeBase64(data []byte) string {
+// DecodeBase64 decodes a base64 string to an array of ASCII values
+func DecodeBase64(str string) []int {
+	data, err := base64.StdEncoding.DecodeString(str)
+	if err != nil {
+		return nil
+	}
+	intArr := make([]int, len(data))
+	for i, v := range data {
+		intArr[i] = int(v)
+	}
+	return intArr
+}
+
+// DecodeGob decodes a gob int array to a string
+func DecodeGob(intArr []int) string {
+	var buf bytes.Buffer
+	for _, v := range intArr {
+		buf.WriteByte(byte(v))
+	}
+	dec := gob.NewDecoder(&buf)
+	var str string
+	err := dec.Decode(&str)
+	if err != nil {
+		return ""
+	}
+	return str
+}
+
+// DecodeHex decodes a hex string to an array of ASCII values
+func DecodeHex(str string) []int {
+	data, err := hex.DecodeString(str)
+	if err != nil {
+		return nil
+	}
+	intArr := make([]int, len(data))
+	for i, v := range data {
+		intArr[i] = int(v)
+	}
+	return intArr
+}
+
+// EncodeBase64 encodes an array of ASCII values to a base64 string
+func EncodeBase64(intArr []int) string {
+	data := make([]byte, len(intArr))
+	for i, v := range intArr {
+		data[i] = byte(v)
+	}
 	return base64.StdEncoding.EncodeToString(data)
 }
 
-// DecodeBase64 decodes data using the base64 algorithm.
-func DecodeBase64(s string) ([]byte, error) {
-	data, err := base64.StdEncoding.DecodeString(s)
+// EncodeGob encodes a string to a gob int array
+func EncodeGob(str string) []int {
+	var buf bytes.Buffer
+	enc := gob.NewEncoder(&buf)
+	err := enc.Encode(str)
 	if err != nil {
-		return nil, ErrInvalidBase64String
+		return nil
 	}
-	return data, nil
+	tempo := buf.Bytes()
+	intArr := make([]int, len(tempo))
+	for i, v := range tempo {
+		intArr[i] = int(v)
+	}
+	return intArr
 }
 
-// EncodeHex encodes data using the hexadecimal encoding algorithm.
-func EncodeHex(data []byte) string {
+// EncodeHex encodes an array of ASCII values to a hex string
+func EncodeHex(intArr []int) string {
+	data := make([]byte, len(intArr))
+	for i, v := range intArr {
+		data[i] = byte(v)
+	}
 	return hex.EncodeToString(data)
 }
 
-// DecodeHex decodes data using the hexadecimal encoding algorithm.
-func DecodeHex(s string) ([]byte, error) {
-	data, err := hex.DecodeString(s)
-	if err != nil {
-		return nil, ErrInvalidHexString
+// StringToAscii converts a string to an array of ASCII values
+func StringToAscii(str string) []int {
+	intArr := make([]int, len(str))
+	for i, v := range str {
+		intArr[i] = int(v)
 	}
-	return data, nil
-}
-
-// EncodeJSON encodes data using the JSON encoding algorithm.
-func EncodeJSON(v interface{}) ([]byte, error) {
-	data, err := json.Marshal(v)
-	if err != nil {
-		return nil, err
-	}
-	return data, nil
-}
-
-// DecodeJSON decodes data using the JSON encoding algorithm.
-func DecodeJSON(data []byte, v interface{}) error {
-	err := json.Unmarshal(data, v)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-// EncodeGob encodes data using the Gob encoding algorithm.
-func EncodeGob(v interface{}) ([]byte, error) {
-	buf := new(bytes.Buffer)
-	err := gob.NewEncoder(buf).Encode(v)
-	if err != nil {
-		return nil, err
-	}
-	return buf.Bytes(), nil
-}
-
-// DecodeGob decodes data using the Gob encoding algorithm.
-func DecodeGob(data []byte, v interface{}) error {
-	err := gob.NewDecoder(bytes.NewReader(data)).Decode(v)
-	if err != nil {
-		return err
-	}
-	return nil
+	return intArr
 }

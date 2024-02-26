@@ -1,15 +1,14 @@
-## ENCODING LIBRARY FOR ECLA
+# Encoding library
 
-# Candidate functions :
+## Candidate functions :
 
-| Name | Prototype | Description |
-| --- | --- | --- |
-| `EncodeBase64` | `func EncodeBase64(data []byte) string` | Encodes data using the base64 algorithm. |
-| `DecodeBase64` | `func DecodeBase64(s string) ([]byte, error)` | Decodes data using the base64 algorithm. |
-| `EncodeHex` | `func EncodeHex(data []byte) string` | Encodes data using the hexadecimal encoding algorithm. |
-| `DecodeHex` | `func DecodeHex(s string) ([]byte, error)` | Decodes data using the hexadecimal encoding algorithm. |
-| `EncodeJSON` | `func EncodeJSON(v interface{}) ([]byte, error)` | Encodes data using the JSON encoding algorithm. |
-| `DecodeJSON` | `func DecodeJSON(data []byte, v interface{}) error` | Decodes data using the JSON encoding algorithm. |
-| `EncodeGob` | `func EncodeGob(v interface{}) ([]byte, error)` | Encodes data using the Gob encoding algorithm. |
-| `DecodeGob` | `func DecodeGob(data []byte, v interface{}) error` | Decodes data using the Gob encoding algorithm. |
-
+|   Func Name   |               Prototype               |                Description                 | Comments |
+|:-------------:|:-------------------------------------:|:------------------------------------------:|:--------:|
+| AsciiToString | AsciiToString(intArr []int) string {} | Converts array of ASCII values to a string |   N/A    |
+| DecodeBase64  |   DecodeBase64(str string) []int {}   |  Decodes a base64 string to ASCII values   |   N/A    |
+|   DecodeGob   |    DecodeGob(intArr []int) string     |    Decodes a gob int array to a string     |   N/A    |
+|   DecodeHex   |    DecodeHex(str string) []int {}     |    Decodes a hex string to ASCII values    |   N/A    |
+| EncodeBase64  |   EncodeBase64(intArr []int) string   |  Encodes ASCII values to a base64 string   |   N/A    |
+|   EncodeGob   |      EncodeGob(str string) []int      |     Encodes string to a gob int array      |   N/A    |
+|   EncodeHex   |    EncodeHex(intArr []int) string     |    Encodes ASCII values to a hex string    |   N/A    |
+| StringToAscii |  StringToAscii(str string) []int {}   |      Converts string to ASCII values       |   N/A    |
