@@ -1,5 +1,8 @@
 # Encoding library
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/Eclalang/encoding)](https://goreportcard.com/report/github.com/Eclalang/encoding)
+[![codecov](https://codecov.io/gh/Eclalang/encoding/graph/badge.svg?token=YNCIYERVBO)](https://codecov.io/gh/Eclalang/encoding)
+
 ## Candidate functions :
 
 |   Func Name   |               Prototype               |                Description                 | Comments |
