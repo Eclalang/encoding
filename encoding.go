@@ -70,10 +70,7 @@ func EncodeBase64(intArr []int) string {
 func EncodeGob(str string) []int {
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
-	err := enc.Encode(str)
-	if err != nil {
-		return nil
-	}
+	_ = enc.Encode(str)
 	tempo := buf.Bytes()
 	intArr := make([]int, len(tempo))
 	for i, v := range tempo {

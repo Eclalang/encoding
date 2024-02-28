@@ -25,6 +25,12 @@ func TestDecodeBase64(t *testing.T) {
 			t.Errorf("DecodeBase64(%v) = %v, want %v", str, actual, expected)
 		}
 	}
+
+	str = `ijj"kkkk`
+	actual = DecodeBase64(str)
+	if actual != nil {
+		t.Errorf("DecodeBase64(%v) = %v, want %v", str, actual, nil)
+	}
 }
 
 func TestDecodeGob(t *testing.T) {
@@ -33,6 +39,12 @@ func TestDecodeGob(t *testing.T) {
 	actual := DecodeGob(array)
 	if expected != actual {
 		t.Errorf("DecodeGob(%v) = %v, want %v", array, actual, expected)
+	}
+
+	array = []int{-1}
+	actual = DecodeGob(array)
+	if actual != "" {
+		t.Errorf("DecodeGob(%v) = %v, want %v", array, actual, "")
 	}
 }
 
@@ -47,6 +59,12 @@ func TestDecodeHex(t *testing.T) {
 		if expected[i] != actual[i] {
 			t.Errorf("DecodeHex(%v) = %v, want %v", str, actual, expected)
 		}
+	}
+
+	str = "abfK0"
+	actual = DecodeHex(str)
+	if actual != nil {
+		t.Errorf("DecodeHex(%v) = %v, want %v", str, actual, nil)
 	}
 }
 
